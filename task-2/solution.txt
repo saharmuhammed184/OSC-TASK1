@@ -1,0 +1,20 @@
+git config --global user.name saharmuhammed184
+git config --global user.email sahar.mohmed.004@gmail.com
+git clone https://github.com/saharmuhammed184/OSC-TASK1.git
+cd OSC-TASK1
+mkdir task-2
+cd task-2
+touch greeting.txt
+echo "Hello World">>greeting.txt
+git add greeting.txt
+git commit -m "Added greeting"
+git checkout -b intro
+echo "I love Git">>greeting.txt
+git add greeting.txt
+git commit -m "Added I love Git"
+git checkout main
+git merge intro
+git tag v1
+git push origin main
+git push origin v1
+ 
