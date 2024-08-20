@@ -1,4 +1,3 @@
-cd ~
 mkdir project_files
 cd project_files
 mkdir reports logs data
@@ -13,26 +12,33 @@ touch data.csv info.txt
 nano report1.md
 nano system.log
 nano data.csv
-tar -czf logs_backup.tar.gz system.log error.log file1.pdf file2.pdf
-mv logs_backup.tar ~/project_files
+cd ..
+cd logs
+tar -cvf logs_backup.tar system.log error.log file1.pdf file2.pdf
+mv logs_backup.tar ~/project_files/
+cd ..
 tar -xvf logs_backup.tar -C logs
-find ~ -name "*.md"
-find ~/project_files -name "*.log"
-find ~/project_files -name "file1.pdf"
-find ~/project_files -iname "*.pdf"
-find ~/project_files/logs -type f
+find ~ -type f -name "*.md"
+find -type f -name "*.log"
+find -type f -name "file1.pdf"
+find -type f -iname "*.pdf"
+cd logs
+find -type f
 ln -s ~/project_files/data/data.csv ~/project_files/link_data.csv
-nano ~/project_files/link_data.csv
-cat ~/project_files/data/data.csv
-rm ~/project_files/link_data.csv
-cd project_files
-echo "Summary Start" > ~/project_files/summary.txt
-date >> ~/project_files/summary.txt
-wc -1 < ~/project_files/summary.txt | tee -a ~/project_files/summary.txt
-wc -w ~/project_files/reports/report1.md
-wc -c ~/project_files/logs/system.log >> ~/project_files/summary.txt
-find ~/project_files -type f -o -type d |wc -1 >> ~/project_files/summary.txt
-cat  ~/project_files/summary.txt 
+cd ..
+nano link_data.csv
+cd data
+cat data.csv
+cd ..
+rm link_data.csv
+touch summaryy.txt
+echo "Summary start" > summary.txt
+data >> summary.txt
+wc -| <summary.txt|tee -a summary.txt
+wc -w < reports/report1.md
+wc -c <logs/system.log >> summary.txt
+find ~/project_files -type f -o -type d |wc -| >> summary.txt
+cat summary.txt
 
 
 
